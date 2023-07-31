@@ -1,6 +1,6 @@
 // Write your JavaScript code here!
 
-const { pickPlanet, addDestinationInfo } = require("./scriptHelper");
+// const { pickPlanet, addDestinationInfo } = require("./scriptHelper");
 
 window.addEventListener("load", function() {
     const form = document.querySelector('[data-testid="testForm"]');
@@ -32,7 +32,7 @@ window.addEventListener("load", function() {
             selectPlanet.star, 
             selectPlanet.distance, 
             selectPlanet.moons, 
-            selectPlanet.imageUrl)
+            selectPlanet.image)
     });
    
 });

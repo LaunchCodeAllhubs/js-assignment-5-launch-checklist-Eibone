@@ -1,5 +1,5 @@
 // Write your helper functions here!
-// require('isomorphic-fetch');
+require('isomorphic-fetch');
 
 function addDestinationInfo(document, name, diameter, star, distance, moons, imageUrl) {
     const missionTarget = document.getElementById("missionTarget");
@@ -62,29 +62,36 @@ function formSubmission(document, list, pilot, copilot, fuelLevel, cargoLevel) {
     const cargoStatusCheck = document.getElementById("cargoStatus");
 
     pilotStatusCheck.innerHTML = `Pilot: ${pilot} is ready for launch`;
-    console.log(pilot);
-    console.log(pilotStatusCheck);
     copilotStatusCheck.innerHTML = `Copilot: ${copilot} is ready for launch`;
+    faultyItemsCheck.style.visibility = "visible";
 
-    if (fuelLevel < 10000) {
-        faultyItemsCheck.style.visibility = "visible";
+    if (fuelLevel < 10000 && cargoLevel > 10000) {
         launchStatusCheck.innerHTML = "Shuttle not ready for launch";
         launchStatusCheck.style.color = "red";
         fuelStatusCheck.innerHTML = "There is not enough fuel for the journey";
-    }
-
-    if (cargoLevel > 10000) {
-        faultyItemsCheck.style.visibility = "visible";
-        launchStatusCheck.innerHTML = "Shuttle not ready for launch";
-        launchStatusCheck.style.color = "#C7254E";
         cargoStatusCheck.innerHTML = "There is too much mass for the shuttle to take off";
-    }
-    if (fuelLevel > 10000 && cargoLevel < 10000) {
-        launchStatusCheck.style.color = "#419F6A";
-        launchStatusCheck.innerHTML = "Shuttle is ready for launch";
-    }
 
+        } else if (fuelLevel > 10000 && cargoLevel > 10000) {
+            launchStatusCheck.innerHTML = "Shuttle not ready for launch";
+            launchStatusCheck.style.color = "#C7254E";
+            cargoStatusCheck.innerHTML = "There is too much mass for the shuttle to take off";
+            fuelStatusCheck.innerHTML = "There is enough fuel for launch";
+
+
+            } else if (fuelLevel < 10000 && cargoLevel < 10000) {
+                launchStatusCheck.innerHTML = "Shuttle not ready for launch";
+                launchStatusCheck.style.color = "#C7254E";
+                fuelStatusCheck.innerHTML = "There is not enough fuel for the journey";
+                cargoStatusCheck.innerHTML = "There is plenty of cargo space for the journey";
+                } else {
+                    launchStatusCheck.style.color = "#419F6A";
+                    launchStatusCheck.innerHTML = "Shuttle is ready for launch";
+                    fuelStatusCheck.innerHTML = "There is enough fuel for launch";
+                    cargoStatusCheck.innerHTML = "There is plenty of cargo space for the journey";
+
+            }    
 }
+
 
 async function myFetch() {
     let planetsReturned;
