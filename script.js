@@ -1,7 +1,10 @@
 // Write your JavaScript code here!
 
 // const { pickPlanet, addDestinationInfo } = require("./scriptHelper");
-
+function hide () {
+    let hidden = document.getElementById("faultyItems");
+    hidden.style.visibility = "hidden";
+}
 window.addEventListener("load", function() {
     const form = document.querySelector('[data-testid="testForm"]');
     const pilotInput = document.querySelector('[name="pilotName"]');
